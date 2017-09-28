@@ -26,7 +26,8 @@ class ImageDrawer extends JPanel {
     protected synchronized void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        if (image == null) return;
+        if (image == null)
+            return;
         
         g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
     }

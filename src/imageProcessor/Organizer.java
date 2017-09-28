@@ -32,10 +32,10 @@ class Organizer extends JFrame {
     
     private JButton buttonCirrus;
     
-    private JButton     buttonCumulus;
-    private JButton     buttonOther;
-    private JButton     buttonStratus;
-    private JButton     buttonWaterspout;
+    private JButton buttonCumulus;
+    private JButton buttonOther;
+    private JButton buttonStratus;
+    private JButton buttonWaterspout;
     /**
      * The panel which displays the image.
      */
@@ -142,7 +142,8 @@ class Organizer extends JFrame {
         
         /* iterate through existing files */
         for (File imageFile : imageFolder.listFiles()) {
-            if (imageFile.isDirectory()) continue;
+            if (imageFile.isDirectory())
+                continue;
             
             BufferedImage image;
             
@@ -214,7 +215,8 @@ class Organizer extends JFrame {
             String imageName = imagePath.substring(imagePath.lastIndexOf(DELIM));
             
             String newPath = saveFolder.getPath();
-            if (!newPath.endsWith(DELIM)) newPath += DELIM;
+            if (!newPath.endsWith(DELIM))
+                newPath += DELIM;
             
             newPath += imageName;
             

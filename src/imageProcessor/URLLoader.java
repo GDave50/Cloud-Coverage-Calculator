@@ -83,11 +83,13 @@ class URLLoader {
         chooser.setDialogTitle("Choose an images folder");
         chooser.setSelectedFile(new File(DEFAULT_IMAGES_DIR));
         
-        if (chooser.showOpenDialog(null) == JFileChooser.CANCEL_OPTION) System.exit(0);
+        if (chooser.showOpenDialog(null) == JFileChooser.CANCEL_OPTION)
+            System.exit(0);
         
         String path = chooser.getSelectedFile().getPath();
         
-        if (!path.endsWith(DELIM)) path += DELIM;
+        if (!path.endsWith(DELIM))
+            path += DELIM;
         
         return path;
     }
@@ -99,11 +101,14 @@ class URLLoader {
     private static File getURLsFile() {
         JFileChooser chooser = new JFileChooser();
         
-        FileFilter textFileFilter = new FileNameExtensionFilter("Text files", new String[] { "txt" });
+        FileFilter textFileFilter = new FileNameExtensionFilter("Text files", new String[] {
+                "txt"
+        });
         chooser.setFileFilter(textFileFilter);
         chooser.setDialogTitle("Choose a URLs File");
         
-        if (chooser.showOpenDialog(null) == JFileChooser.CANCEL_OPTION) System.exit(0);
+        if (chooser.showOpenDialog(null) == JFileChooser.CANCEL_OPTION)
+            System.exit(0);
         
         return chooser.getSelectedFile();
     }
