@@ -11,8 +11,6 @@ Andy Vadnais
 
 Peter Bush
 
-Aaron Pirwitz
-
 Brandon Copeman
 
 -----
