@@ -25,20 +25,25 @@ import intravenous.tools.CroppingTool;
  */
 class Organizer extends JFrame {
     
-    /**
-     * Tracks what button is pressed by the user.
-     */
+    /** Tracks what button is pressed by the user. */
     Cloud typePressed;
     
+    /** Button to press to choose cirrus. */
     private JButton buttonCirrus;
     
+    /** Button to press to choose cumulus. */
     private JButton buttonCumulus;
+    
+    /** Button to press to choose other. */
     private JButton buttonOther;
+    
+    /** Button to press to choose stratus. */
     private JButton buttonStratus;
+    
+    /** Button to press to choose waterspout. */
     private JButton buttonWaterspout;
-    /**
-     * The panel which displays the image.
-     */
+    
+    /** The panel which displays the image. */
     private ImageDrawer panelImage;
     
     /**
@@ -58,7 +63,6 @@ class Organizer extends JFrame {
         
         buttonCumulus = new JButton("Cumulus");
         buttonCumulus.addActionListener(new ActionListener() {
-            
             @Override
             public void actionPerformed(ActionEvent evt) {
                 typePressed = Cloud.CUMULUS;
@@ -69,7 +73,6 @@ class Organizer extends JFrame {
         
         buttonCirrus = new JButton("Cirrus");
         buttonCirrus.addActionListener(new ActionListener() {
-            
             @Override
             public void actionPerformed(ActionEvent evt) {
                 typePressed = Cloud.CIRRUS;
@@ -79,7 +82,6 @@ class Organizer extends JFrame {
         
         buttonStratus = new JButton("Stratus");
         buttonStratus.addActionListener(new ActionListener() {
-            
             @Override
             public void actionPerformed(ActionEvent evt) {
                 typePressed = Cloud.STRATUS;
@@ -89,7 +91,6 @@ class Organizer extends JFrame {
         
         buttonWaterspout = new JButton("Waterspout");
         buttonWaterspout.addActionListener(new ActionListener() {
-            
             @Override
             public void actionPerformed(ActionEvent evt) {
                 typePressed = Cloud.WATERSPOUT;
@@ -99,7 +100,6 @@ class Organizer extends JFrame {
         
         buttonOther = new JButton("Other");
         buttonOther.addActionListener(new ActionListener() {
-            
             @Override
             public void actionPerformed(ActionEvent evt) {
                 typePressed = Cloud.OTHER;
@@ -152,8 +152,8 @@ class Organizer extends JFrame {
                 image = ImageIO.read(imageFile);
             } catch (IOException ex) {
                 String path = imageFile.getPath();
-                System.err.println(
-                        "failed to load image " + path.substring(path.lastIndexOf(DELIM)) + ": " + ex.getMessage());
+                System.err.println("failed to load image " +
+                        path.substring(path.lastIndexOf(DELIM)) + ": " + ex.getMessage());
                 continue;
             }
             
@@ -177,6 +177,7 @@ class Organizer extends JFrame {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException ex) {
+                    // do nothing
                 }
             
             buttonCumulus.setEnabled(false);

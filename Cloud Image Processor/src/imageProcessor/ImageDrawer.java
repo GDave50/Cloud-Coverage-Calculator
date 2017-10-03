@@ -16,6 +16,9 @@ class ImageDrawer extends JPanel {
      */
     private BufferedImage image;
     
+    /**
+     * Non-instantiable.
+     */
     ImageDrawer() {
     }
     

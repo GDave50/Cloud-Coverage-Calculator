@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -41,7 +40,14 @@ class URLLoader {
      * Default folder for images. Any folder can be used, however.
      */
     private static final String DEFAULT_IMAGES_DIR =
-            "C:/Users/" + System.getProperty("user.name") + "/Desktop/images/".replaceAll("//", DELIM);
+            ("C:/Users/" + System.getProperty("user.name") + "/Desktop/images/").
+            replaceAll("//", DELIM);
+    
+    /**
+     * Whether or not the program should read the list of URLs
+     * at the start of the program.
+     */
+    private static final boolean READ_URLS = false;
     
     /**
      * File which holds the ~1400 URLs.
@@ -54,11 +60,8 @@ class URLLoader {
     public static void main(String[] args) {
         LookNFeel.setLookNFeel("Nimbus");
         
-        int opt =
-                JOptionPane.showConfirmDialog(null, "Do you have a full image folder?", "", JOptionPane.YES_NO_OPTION);
-        
-        /* if the user does not already have all the images */
-        if (opt == JOptionPane.NO_OPTION) {
+        /* if the program should read the URLs */
+        if (READ_URLS) {
             urlFile = getURLsFile();
             imagesDir = getImagesFolder();
             
@@ -101,9 +104,8 @@ class URLLoader {
     private static File getURLsFile() {
         JFileChooser chooser = new JFileChooser();
         
-        FileFilter textFileFilter = new FileNameExtensionFilter("Text files", new String[] {
-                "txt"
-        });
+        FileFilter textFileFilter =
+                new FileNameExtensionFilter("Text files", new String[] { "txt" });
         chooser.setFileFilter(textFileFilter);
         chooser.setDialogTitle("Choose a URLs File");
         
@@ -152,20 +154,26 @@ class URLLoader {
         final String format = "Done writing image %d (%dms)\n";
         int count = 1;
         
-        for (URL url : urls) {
+        for (final URL url : urls) {
             try {
                 timer.start();
                 
-                BufferedImage image = ImageIO.read(url);
-                
                 String filepath = imagesDir + "image" + count + ".jpg";
-                ImageIO.write(image, "jpg", new File(filepath));
+                File imageFile = new File(filepath);
+                
+                if (imageFile.exists()) {
+                    System.out.println("Image " + count + " already exists, skipping");
+                    continue;
+                }
+                
+                BufferedImage image = ImageIO.read(url);
+                ImageIO.write(image, "jpg", imageFile);
                 
                 System.out.printf(format, count, (int) timer.time());
-                
-                ++count;
             } catch (IOException | IllegalArgumentException ex) {
                 System.err.println("failed to read/write image" + count + ", skipping");
+            } finally {
+                ++count;
             }
         }
         
