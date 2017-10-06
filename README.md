@@ -15,7 +15,7 @@ Brandon Copeman
 
 -----
 
-This project involves analyzing images of clouds using OpenCV. The program will detect certain cloud types and water spouts. The project is in very early stages currently. Cloud Image Processor is a Java program made by Gage Davidson for the Cloud Coverage Calculator specifically (see the respective README for more information).
+This project involves analyzing images of clouds using OpenCV. The program will detect certain cloud types and water spouts. The project is in early stages currently. Cloud Image Processor is a Java program made by Gage Davidson for the Cloud Coverage Calculator specifically (see the respective README for more information).
 
 -----
 
