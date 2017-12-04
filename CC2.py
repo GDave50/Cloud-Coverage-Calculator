@@ -17,13 +17,13 @@ Author: Andrew Vadnais
 """
 
 #
-#   test_colors takes in starting, step, and max values for h, s, and v
+#   color_printer takes in starting, step, and max values for h, s, and v
 #   and iterates through every possible combination of h, s, and v for the 
 #   given inputs and saves an image of size (5 x 5) to a given directory.
 #   The original purpose of this function was to decipher the PIL convention
 #   of naming HSV color values.
 #
-def test_colors(h0, s0, v0, hstep, sstep, vstep, hmax, smax, vmax, directory):
+def color_printer(h0, s0, v0, hstep, sstep, vstep, hmax, smax, vmax, directory):
     h = h0
     s = s0
     v = v0
