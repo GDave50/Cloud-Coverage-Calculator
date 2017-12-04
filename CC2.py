@@ -10,10 +10,8 @@ mydir = "/Users/andyvadnais/Desktop/f17/csc380/Clouds/"
 
 """
 
-CC2 is the updated version of CC (Cloud Coverage). This program takes in images
-and analyzes the pixels to find shades of blue, which represent the sky. The program
-then calculates a percentage of cloud coverage based on how much of the image is NOT 
-sky pixel
+CC2 is the updated version of CC (Cloud Coverage). 
+
 Author: Andrew Vadnais
 
 """
