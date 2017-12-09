@@ -5,30 +5,6 @@ import os
 import Rectangle
 from shapely.geometry import Polygon
 
-def get_all(skyimage, isDaytime):
-    newpix = skyimage.load()
-    if isDaytime:
-        count = count_blue_pixels(skyimage, newpix)
-    else:
-        #TODO RUN THROUGH CASCADE & GET BOUNDING RECTANGLES
-        #rects = list of rects returned from image run through clouds cascade
-        q = im.quantize(colors=15, method=1)
-        sky = upper_left(q, rects)
-        count = count_sky_pixels(q, im, sky, newpix)
-    
-    #calculate cloud coverage
-    coverage = (1 - float(count / (skyimage.width * skyimage.height))) * 100
-    
-    return skyimage, coverage
-
-#########TESTING get_all#############
-#insert your filepath to test image
-im = Image.open("/Users/andyvadnais/Desktop/f17/csc380/sky4.jpg")
-get_all(im, True)
-#show result
-im.show()
-
-
 def color_printer(h0, s0, v0, hstep, sstep, vstep, hmax, smax, vmax, directory):
     
     """takes in starting, step, and max values for h, s, and v
@@ -115,18 +91,19 @@ def create_4x_blank(image, background):
     new = Image.new("HSV", (2 * image.width, 2 * image.height), background)
     return new
 
-def count_blue_pixels(image, newpix):
+def count_blue_pixels(image, canvas):
     """ Counts blue shaded pixels
     
     Arguments
     -
     image       - an image opened with PIL Image, the size of this image
-                is used to determine the size of the blank image. 
+                is used to determine the size of the blank image.
     
     newpix      - allows manipulation of an image. This variable should be 
                 created by opening an image with PIL Image and then using the 
                 Image.load() function to allow for pixel manipulation
     """
+    image = image.convert("HSV")
     sky_count = 0
     h,s,v = 0,0,0
     for x in range(image.width):
@@ -144,7 +121,7 @@ def count_blue_pixels(image, newpix):
                 (h >= 165 and h < 170 and (s + v > 330)) or\
                 (h >= 170 and h < 175 and (s + v > 335)) or\
                 (h >= 175 and h < 180 and (s + v > 340)):
-                    newpix[x,y] = image.getpixel((x, y))
+                    canvas[x,y] = image.getpixel((x, y))
                     sky_count += 1
     return sky_count
 
@@ -536,3 +513,31 @@ def merge_two_dicts(x,y):
     z = x.copy()
     z.update(y)
     return z
+    
+
+
+def get_all(sky_image, isDaytime):
+    red_hsv = (255,255,255)
+    new_image = create_blank_HSV(sky_image,red_hsv)
+    canvas = new_image.load()
+    if isDaytime:
+        count = count_blue_pixels(sky_image, canvas)
+    else:
+        #TODO RUN THROUGH CASCADE & GET BOUNDING RECTANGLES
+        #rects = list of rects returned from image run through clouds cascade
+        q = im.quantize(colors=15, method=1, kmeans=0, palette=None)
+        sky = upper_left(q, rects)
+        count = count_sky_pixels(q, im, sky, canvas)
+    
+    #calculate cloud coverage
+    coverage = (1 - float(count) / (sky_image.width * sky_image.height)) * 100
+    return new_image, coverage
+    
+    
+#########TESTING get_all#############
+#insert your filepath to test image    
+im = Image.open("/Users/andyvadnais/Desktop/f17/csc380/sky4.jpg")
+im, coverage = get_all(im, True)
+#show result
+print "Cloud Coverage: ", coverage
+im.show()
