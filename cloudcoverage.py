@@ -5,6 +5,30 @@ import os
 import Rectangle
 from shapely.geometry import Polygon
 
+def get_all(skyimage, isDaytime):
+    newpix = skyimage.load()
+    if isDaytime:
+        count = count_blue_pixels(skyimage, newpix)
+    else:
+        #TODO RUN THROUGH CASCADE & GET BOUNDING RECTANGLES
+        #rects = list of rects returned from image run through clouds cascade
+        q = im.quantize(colors=15, method=1)
+        sky = upper_left(q, rects)
+        count = count_sky_pixels(q, im, sky, newpix)
+    
+    #calculate cloud coverage
+    coverage = (1 - float(count / (skyimage.width * skyimage.height))) * 100
+    
+    return skyimage, coverage
+
+#########TESTING get_all#############
+#insert your filepath to test image
+im = Image.open("/Users/andyvadnais/Desktop/f17/csc380/sky4.jpg")
+get_all(im, True)
+#show result
+im.show()
+
+
 def color_printer(h0, s0, v0, hstep, sstep, vstep, hmax, smax, vmax, directory):
     
     """takes in starting, step, and max values for h, s, and v
@@ -389,6 +413,7 @@ def OverlayBoxes(im, coordinates, fill, outline):
 
 def upper_left(im, rects):
     """Returns the color of the first pixel not contained in a bounding box
+        If no bounding boxes, returns None
     
     Arguments
     -
@@ -402,13 +427,9 @@ def upper_left(im, rects):
         for y in range(im.height):
             for key in rects:
                 if not rects[key].Contains(x ,y):
-                    skycolor = pix[x,y]
-                    pix[x,y] = ImageColor.getrgb("red")
-                break
-            break
-        break
-                    
-    return skycolor
+                    skycolor = im.getpixel((x,y))
+                    return     
+    return None
 
 def count_sky_pixels(q, im, skycolor, newpix):
     """Counts sky colored pixels in an image. Paints all sky colored pixels to
