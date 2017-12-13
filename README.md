@@ -1,22 +1,32 @@
-# Cloud-Coverage-Calculator
-Project 4: Cloud Coverage Calculator
-
+# cloudcoverage
 -----
+## ABOUT
+A python package for estimating cloud coverage and detecting waterspouts! 
 
-Group members:
+_This was a project assigned in CSC 380 - Software Engineering at State University of New York College at Oswego._
 
-Gage Davidson
+Contribuotors to this project include: 
 
-Andy Vadnais
+- Andrew Vadnais
+  
+- Gage Davidson
+  
+- Peter Bush
+  
+- Brandon Copeman
 
-Peter Bush
+## INSTALLATION
+1. To install, first be sure that Python 2.7 is installed. Check this in command line:
 
-Brandon Copeman
+        python -V
 
------
+2. Download the zip of this repository to the directory in which you plan to use it. 
 
-This project involves analyzing images of clouds using OpenCV. The program will detect certain cloud types and water spouts. The project is in early stages currently. Cloud Image Processor is a Java program made by Gage Davidson for the Cloud Coverage Calculator specifically (see the respective README for more information).
+3. Unzip
 
------
+4. In the command line, navigate to the cloudcoverage directory
 
-Project description: https://oswego.open.suny.edu/webapps/blackboard/execute/content/file?cmd=view&content_id=_726495_1&course_id=_22512_1&launch_in_new=true
+5. Type in command line:
+
+        cloudcoverage setup.py install
+
