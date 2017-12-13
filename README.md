@@ -6,7 +6,6 @@ Project 4: Cloud Coverage Calculator
 Group members:
 
 Gage Davidson
-
 Andy Vadnais
 
 Peter Bush
