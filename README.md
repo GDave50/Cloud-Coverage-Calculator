@@ -21,7 +21,7 @@ Contributors to this project include:
 
         python -V
 
-2. Download the zip of this repository to the directory in which you plan to use it and unzip.
+2. Download the zip of this repository or download from [PyPI](https://pypi.python.org/pypi/cloudcoverage/2.0) to the directory in which you plan to use it and unzip.
 
 3. In the command line, navigate to the cloudcoverage directory
 
@@ -64,7 +64,6 @@ exact floating point representation is ludicrous
 Example:
 
     from cloudcoverage import cloudcoverage
-    from PIL import Image
     
     image = <your_image_path>
     coverageimage, coveragepercentage = cloudcoverage.get_coverage(image, True)
@@ -97,7 +96,6 @@ If *no* waterspouts are detected, returns:
 Example:
 
     from cloudcoverage import cloudcoverage
-    from PIL import Image
     
     image = <your_image_path>
     waterspoutimage, waterspoutsdetected = cloudcoverage.get_waterspouts(image)
