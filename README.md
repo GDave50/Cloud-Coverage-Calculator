@@ -171,4 +171,31 @@ The way cloudcoverage works is by pixel analysis in conjunction with the cascade
 Cloud detection using cascades and opencv returns bounding rectangles around clouds and often times the majority of the bounding box's area is sky. It wouldn't make sense to calculate coverage based on those areas. Also, the detection is not completely accurate, again, because clouds are ambiguous and constantly changing. The bounding boxes could just as easily not enclose the entire cloud. This is why during sunrise and sunset hours, the cloud coverage may not be accurate.
 
 
+## OTHER FUNCTIONS
+
+- ```color_printer``` : used to test PIL's HSV naming scheme, makes images of every shade incrementing H,S, and V by 5.
+
+- ```create_blank_HSV``` : creates a blank HSV image with an inputted image's size and inputted background color
+
+- ```create_4x_blank``` : does the same as ```create_blank_HSV``` but image is 2 * width and 2 * height
+
+- ```count_blue_pixels``` : counts all blue pixels in an image
+
+- ```do_testing_vary_q``` : used to test the number of colors to quantize an in image to
+
+- ```do_testing``` : used to test the final algorithms
+
+- ```convert_to_coords``` : converts text file with coordinates to a list of Rectangle objects
+
+- ```wh_to_xy``` : converts 4-tuple (x, y, w, h) to 4-tuple of coordinates ((x1,y1), (x2, y1), (x2, x2), (x2, y1))
+
+- ```overlay_boxes``` : used to overlay rectangles on an image
+
+- ```upper_left``` : used to get the first pixel in an image not contained in cloud bounding box
+
+- ```count_sky_pixels``` : used to count colors similar to an inputted color
+
+- ```get_sky_color``` : experimental function that attempted to find the sky color by scanning the contents of bounding boxes. Too inconsistent to implement in the final function
+
+- ```merge_to_dicts``` : merges two dictionaries into one new dictionary
 
