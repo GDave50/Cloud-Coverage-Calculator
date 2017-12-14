@@ -71,7 +71,7 @@ Example:
     coverageimage.show()
     print coverage_percentage
     
-This script will show the cloud-detected image in your machine's default image application and print the calculated cloud coverage based on the corresponding image. Note that "True" was used in this example which denotes that the image was taken during daylight.
+This script will show the cloud-detected image in your machine's default image application and print the calculated cloud coverage based on the corresponding image. Note that ```True``` was used in this example which denotes that the image was taken during daylight.
 
 ### ```get_waterspouts()```
 
