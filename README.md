@@ -40,9 +40,9 @@ First make sure your header has:
 Then set up a filepath to the image you want to get the cloud coverage for. This image should contain nothing but the sky. If the image is over a horizon, it should already be cropped at the horizon.
     
 See below the various methods you can use this image with.
-### get_coverage
+### get_coverage()
 
-Determines the cloud coverage in your image. If the image was taken during daylight hours, then the coverage will be caluculated based on the number of blue pixels in the image. The cloud coverage is 100% - bluepixel%. If the image was taken during the sunrise or sunset hours, we use an experimental function that sampled the upper left pixel of the image to see if it is a cloud based on the CloudCascade. If it is, then we step left until a "non-sky" pixel is found. We then use the color of this pixel as a base to scan the entire image for similar shades. The cloud coverage is 100% - skypixel%. __*THIS METHOD OF ACQUIRING THE SKY COLOR IS NOT RELIABLE.*__ Therefore, keep in mind when using this function with sunrise and sunset images. __get_coverage does not support nighttime images as the contrast is too low. __
+Determines the cloud coverage in your image. If the image was taken during daylight hours, then the coverage will be caluculated based on the number of blue pixels in the image. The cloud coverage is 100% - bluepixel%. If the image was taken during the sunrise or sunset hours, we use an experimental function that sampled the upper left pixel of the image to see if it is a cloud based on the CloudCascade. If it is, then we step left until a "non-sky" pixel is found. We then use the color of this pixel as a base to scan the entire image for similar shades. The cloud coverage is 100% - skypixel%. __*THIS METHOD OF ACQUIRING THE SKY COLOR IS NOT RELIABLE.*__ Therefore, keep in mind when using this function with sunrise and sunset images. __get_coverage() does not support nighttime images as the contrast is too low.__
 
 Arguments:
 
@@ -74,4 +74,39 @@ Example:
     
 This script will show the cloud-detected image in your machine's default image application and print the calculated cloud coverage based on the corresponding image. Note that "True" was used in this example which denotes that the image was taken during daylight.
 
+### get_waterspouts()
+
+Detects waterspouts in your image. This function is very good at detecting waterspouts, but unfortunately is also very good at falsely detecting waterspouts. We recommend using caution if you choose to implement automated email notifications in *get_all()*.
+
+Arguments:
+
+- sky_image_path: filepath to image of a sky that has been cropped at the horizon.
+    
+If waterspouts are detected, returns:
+
+- new Image with red boxes overlaid on detected waterspouts
+
+- True
+
+If *no* waterspouts are detected, returns:
+
+- None
+
+- False
+
+Example:
+
+    from cloudcoverage import cloudcoverage
+    from PIL import Image
+    
+    path = <your_image_path>
+    waterspout_image, waterspouts_detected = cloudcoverage.get_waterspouts(image)
+    
+    if waterspouts_detected:
+        waterspout_image.show()
+
+    else:
+        print "No waterspouts detected."
+        
+This script will show the waterspout-detected image in your machine's default image application if waterspouts were found.
 
