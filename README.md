@@ -127,6 +127,8 @@ Arguments:
 - ```image_save_to_dir``` : filepath to a directory that a temporary image can be saved to. The image will be saved as
                       "waterspout_temp.jpg" and will be overwritten with the latest waterspout-detected image.
                        This is necessary in order to use the image as an attachment in the email alert.
+                       
+- ```password``` : password for oswegocloud@gmail.com to send email alerts from
     
 Returns:
 
