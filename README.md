@@ -21,7 +21,7 @@ Contributors to this project include:
 
         python -V
 
-2. Download the zip of this repository or download from [PyPI](https://pypi.python.org/pypi/cloudcoverage/2.0) to the directory in which you plan to use it and unzip.
+2. Download the zip of this repository or download from [PyPI](https://pypi.python.org/pypi/cloudcoverage/2.1) to the directory in which you plan to use it and unzip.
 
 3. In the command line, navigate to the cloudcoverage directory
 
