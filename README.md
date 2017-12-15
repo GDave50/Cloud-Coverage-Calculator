@@ -173,6 +173,8 @@ Cloud detection using cascades and opencv returns bounding rectangles around clo
 
 ## OTHER FUNCTIONS
 
+Additional information on these functions can be found in the source code.
+
 - ```color_printer``` : used to test PIL's HSV naming scheme, makes images of every shade incrementing H,S, and V by 5.
 
 - ```create_blank_HSV``` : creates a blank HSV image with an inputted image's size and inputted background color
